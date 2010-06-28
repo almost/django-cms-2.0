@@ -18,7 +18,7 @@ class ApphookPool(object):
                 self.block_register = True
                 path = ".".join(app.split(".")[:-1])
                 class_name = app.split(".")[-1]
-                cls = __import__(path, {}, {}, [class_name])
+                cls = getattr(__import__(path, {}, {}, [class_name]),class_name)
                 self.block_register = False
                 self.register(cls)
         else:
